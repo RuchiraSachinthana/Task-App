@@ -39,7 +39,7 @@ $(document).ready(function() {
       description: $('#description').val(),
       id: $('#taskId').val()
     };
-    const url = edit === false ? 'task-add.php' : 'task-edit.php';
+    const url = edit === false ? './task-add.php' : './task-edit.php';
     console.log(postData, url);
     $.post(url, postData, (response) => {
       console.log(response);
@@ -51,7 +51,7 @@ $(document).ready(function() {
   // Fetching Tasks
   function fetchTasks() {
     $.ajax({
-      url: './tasks-list.php',
+      url: './task-list.php',
       type: 'GET',
       success: function(response) {
         const tasks = JSON.parse(response);
