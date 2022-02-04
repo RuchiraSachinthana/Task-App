@@ -12,7 +12,7 @@ $(document).ready(function() {
     if($('#search').val()) {
       let search = $('#search').val();
       $.ajax({
-        url: 'task-search.php',
+        url: './task-search.php',
         data: {search},
         type: 'POST',
         success: function (response) {
@@ -51,7 +51,7 @@ $(document).ready(function() {
   // Fetching Tasks
   function fetchTasks() {
     $.ajax({
-      url: 'tasks-list.php',
+      url: './tasks-list.php',
       type: 'GET',
       success: function(response) {
         const tasks = JSON.parse(response);
@@ -83,7 +83,7 @@ $(document).ready(function() {
   $(document).on('click', '.task-item', (e) => {
     const element = $(this)[0].activeElement.parentElement.parentElement;
     const id = $(element).attr('taskId');
-    $.post('task-single.php', {id}, (response) => {
+    $.post('./task-single.php', {id}, (response) => {
       const task = JSON.parse(response);
       $('#name').val(task.name);
       $('#description').val(task.description);
@@ -98,7 +98,7 @@ $(document).ready(function() {
     if(confirm('Are you sure you want to delete it?')) {
       const element = $(this)[0].activeElement.parentElement.parentElement;
       const id = $(element).attr('taskId');
-      $.post('task-delete.php', {id}, (response) => {
+      $.post('./task-delete.php', {id}, (response) => {
         fetchTasks();
       });
     }
